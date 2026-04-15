@@ -1,0 +1,4 @@
+broad_sentiment,avg_daily_pnl,median_daily_pnl,avg_win_rate,total_pnl,sample_size
+Fear,5185.1464,122.737,0.8423,4096265.6901,790
+Greed,4144.2083,265.2477,0.8563,4865300.5836,1174
+Neutral,3438.6188,167.5517,0.8357,1292920.6756,376
