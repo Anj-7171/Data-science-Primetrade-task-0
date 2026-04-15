@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Trader Performance vs Market Sentiment 📊
 
 This repository contains the solution for the Primetrade Data Science intern project. It analyzes how Bitcoin Market Sentiment (Fear/Greed) affects trader behavior, frequency, sizing, and performance on Hyperliquid.
@@ -65,3 +66,6 @@ This repository contains the solution for the Primetrade Data Science intern pro
 **"Long-Only Trend Safety"**
 *Rule of Thumb:* If you are a Low-Volume trader, implement a strict halt on deploying capital during Fear days. Only execute setups when the sentiment transitions into 'Greed'.
 *Rationale:* Moving from a 65% win-rate knife-catching scenario to a mathematically backed 93% structural uptrend momentum scenario guarantees systemic profitability over an extended horizon. Avoid fighting extreme systemic fear.
+=======
+# Data-science-Primetrade-task-0
+>>>>>>> 4f9b5b7033f69db88f847167d51d55d5f982e21f
