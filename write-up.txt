@@ -1,0 +1,36 @@
+Trader Performance vs Market Sentiment: Project Write-up
+
+This document summarizes the approach, key findings, and actionable trading rules discovered by analyzing the relationship between the Bitcoin Fear & Greed Index and trader performance on Hyperliquid.
+
+1. Methodology
+
+The goal was to identify distinct behavioral shifts in trader performance driven by overarching market sentiment.
+Data Alignment: Raw Hyperliquid execution data (containing unix timestamps, sizing, and order direction) was normalized into daily UTC boundaries to align perfectly with the daily Fear/Greed classifications.
+Metric Aggregation: For each trader (Account) on an active day, we calculated the total Daily PnL, Win Rate (profitable closed trades / total closed trades), average Trade Size (Volume USD), trade Frequency, and a Long/Short Ratio.
+Trader Segmentation: Traders were clustered into generalized segments to prevent outlier bias. We used global medians to designate traders as either Frequent vs Infrequent and High-Volume vs Low-Volume.
+Analysis: The final merged data was grouped by sentiment regimes (Fear, Greed, Neutral) allowing us to observe how metrics and segment-level PnLs directly skewed amidst shifting market psychology.
+
+2. Key Insights
+
+Our statistical analysis uncovered clear behavioral shifts on "Fear" days:
+
+* Insight 1: Panic "Dip-Buying" Leads to Oversizing
+During Fear regimes, the average trader actively increases their trade count (47.3 trades/day vs 41.2 on Greed) whilst simultaneously bloating their average trade size ($8,529 vs $5,954). Furthermore, the Long/Short ratio spikes strictly toward longing (8.37 vs 5.72). Traders predictably attempt to aggressively catch falling knives during market drawdowns.
+
+* Insight 2: "Chop" Destroys the Overtrader
+Under the 'Fear' classification, High-Volume traders who trade Frequently significantly underperform (Avg PnL: $3,894) compared to High-Volume traders who trade Infrequently (Avg PnL: $17,834). High volatility on Fear days leads to massive chop. Taking a single, well-calculated position performs roughly 4.5x better than attempting to scalp volatile panic.
+
+* Insight 3: The Retail Disadvantage in Fear
+The "Infrequent + Low Volume" (Retail) trader performs awfully on Fear days (65.5% win rate, $811 daily PnL). Yet, during Greed regimes, this exact same subset achieves an outstanding 93.7% win rate. Lower volume accounts lack the liquid margin needed to survive extreme drawdown wicks under turbulence, causing wide systemic capitulation.
+
+3. Strategy Recommendations
+
+Based on the quantitative segmentation, we recommend the following two actionable trading strategies:
+
+Strategy A: VIX/Fear Volume Throttling (For High-Volume/Algorithmic Accounts)
+* The Rule: When Sentiment enters 'Fear' or 'Extreme Fear', programmatically reduce trade velocity (execution frequency per hour) by 50%, but allow position sizing to remain at normal levels for concentrated entries.
+* Rationale: Escaping the high-volatility "chop zone" prevents death-by-a-thousand-cuts. The data heavily supports infrequent, high-volume action dominating the fear chop.
+
+Strategy B: Long-Only Trend Safety (For Retail / Low-Volume Accounts)
+* The Rule: If operating a Low-Volume strategy, implement a strict halt on deploying capital during Fear days. Only execute setups when the sentiment transitions solidly back into 'Greed' or 'Neutral'.
+* Rationale: Moving from a ~65% win-rate knife-catching environment to a mathematically backed ~93% structural momentum scenario guarantees systemic profitability over an extended horizon. Retail traders should strictly avoid fighting extreme systemic fear.
